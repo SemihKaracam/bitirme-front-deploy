@@ -1,0 +1,33 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.icon{
+  font-size: 60px;
+}
+
+
+.progress{
+  height: 32px;
+  border-radius: 6px;
+  width: 500px;
+  position: relative;
+  border: 1px solid black;
+}
+
+.progress-filled{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 0px;
+  border-radius: 6px;
+  background-color: green;
+  z-index: 999;
+}
+

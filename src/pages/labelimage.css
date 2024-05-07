@@ -1,0 +1,26 @@
+/* canvas{
+    width: 600px;
+    height: 600px;
+} */
+
+.image-list-container{
+    display: flex;
+    padding-left: 80px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.label-name{
+    padding: 6px 10px;
+    width: 100%;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .model{
+        height: auto;
+    }
+    .modal-body{
+        flex-direction: column;
+    }
+}
