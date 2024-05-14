@@ -105,12 +105,8 @@ function App() {
     setLoading(true)
     console.log("image url:",imageUrl)
     // const res = await axios.post("http://localhost:5000/yapayzeka",{imageUrl})
-    const agent = new https.Agent({
-      rejectUnauthorized: false,
-    })
-    const res = await axios.post("http://165.22.18.182:5000/yapayzeka",{imageUrl},{
-      httpsAgent: agent
-    })
+ 
+    const res = await axios.post("http://165.22.18.182:5000/yapayzeka",{imageUrl})
     console.log("res yapayzeka: ",res.data)
     setResYapayzeka(res.data)
     setLoading(false)
