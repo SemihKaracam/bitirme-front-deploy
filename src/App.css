@@ -76,6 +76,8 @@ h1, h2, h3, h4, h5, h6, p{
   display: flex;
   align-items: center;
   padding-left: 80px;
+  padding-right: 80px;
+  justify-content: space-between;
 }
 .list-container{
   display: flex;
@@ -182,17 +184,39 @@ input::file-selector-button:hover{
 }
 
 
+/*grafik sayfası*/
+
 .grafik-page {
-  height: 100vh;
+  padding:40px;
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  gap: 2vw;
-  flex-wrap: wrap;
-  background-color: #ddd;
+  height: 100vh;
+}
+
+.grafik-grid-list{
+  display: grid;
+  width: 100% !important;
+  grid-template-areas: "tahmin classification"
+                       "rocLeft rocRight"
+                       "traVal traVal";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  grid-gap: 20px;
+}
+
+.el1{
+  grid-area: tahmin;
+}
+.el2{
+  grid-area: classification;
+}
+.el3{
+  grid-area: rocLeft;
+}
+.el4{
+  grid-area: rocRight;
+}
+.el5{
+  grid-area: traVal;
 }
 
 .dataCard {

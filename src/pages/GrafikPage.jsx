@@ -4,7 +4,12 @@ import { Bar, Doughnut, Line } from "react-chartjs-2";
 import "../App.css";
 import revenueData from "../data/revenueData.json";
 import sourceData from "../data/sourceData.json";
-
+import { useNavigate } from "react-router-dom";
+import grafik1 from "../assets/grafik1.jpg"
+import grafik2 from "../assets/grafik2.jpg"
+import grafik3 from "../assets/grafik3.jpg"
+import grafik4 from "../assets/grafik4.jpg"
+import grafik5 from "../assets/grafik5.jpg"
 defaults.maintainAspectRatio = false;
 defaults.responsive = true;
 
@@ -14,98 +19,31 @@ defaults.plugins.title.font.size = 20;
 defaults.plugins.title.color = "black";
 
 const GrafikPage = () => {
+  const handleNavigate = () => {
+    navigate("/")
+  }
+  const navigate = useNavigate()
+
   return (
     <div className="grafik-page">
-      <div className="dataCard revenueCard">
-        <Line
-          data={{
-            labels: revenueData.map((data) => data.label),
-            datasets: [
-              {
-                label: "Revenue",
-                data: revenueData.map((data) => data.revenue),
-                backgroundColor: "#064FF0",
-                borderColor: "#064FF0",
-              },
-              {
-                label: "Cost",
-                data: revenueData.map((data) => data.cost),
-                backgroundColor: "#FF3030",
-                borderColor: "#FF3030",
-              },
-            ],
-          }}
-          options={{
-            elements: {
-              line: {
-                tension: 0.5,
-              },
-            },
-            plugins: {
-              title: {
-                text: "Monthly Revenue & Cost",
-              },
-            },
-          }}
-        />
-      </div>
-
-      <div className="dataCard customerCard">
-        <Bar
-          data={{
-            labels: sourceData.map((data) => data.label),
-            datasets: [
-              {
-                label: "Count",
-                data: sourceData.map((data) => data.value),
-                backgroundColor: [
-                  "rgba(43, 63, 229, 0.8)",
-                  "rgba(250, 192, 19, 0.8)",
-                  "rgba(253, 135, 135, 0.8)",
-                ],
-                borderRadius: 5,
-              },
-            ],
-          }}
-          options={{
-            plugins: {
-              title: {
-                text: "Revenue Source",
-              },
-            },
-          }}
-        />
-      </div>
-
-      <div className="dataCard categoryCard">
-        <Doughnut
-          data={{
-            labels: sourceData.map((data) => data.label),
-            datasets: [
-              {
-                label: "Count",
-                data: sourceData.map((data) => data.value),
-                backgroundColor: [
-                  "rgba(43, 63, 229, 0.8)",
-                  "rgba(250, 192, 19, 0.8)",
-                  "rgba(253, 135, 135, 0.8)",
-                ],
-                borderColor: [
-                  "rgba(43, 63, 229, 0.8)",
-                  "rgba(250, 192, 19, 0.8)",
-                  "rgba(253, 135, 135, 0.8)",
-                ],
-              },
-            ],
-          }}
-          options={{
-            plugins: {
-              title: {
-                text: "Revenue Sources",
-              },
-            },
-          }}
-        />
+      <button onClick={handleNavigate} className="upload-btn">Test Ekranı</button>
+      <h3>Modelin Performans Çıktıları</h3>
+      <div className="grafik-grid-list">
+        <div className="grafik-grid-element el1 shadow p-4 bg-body rounded">
+          <img className="w-100 h-100" src={grafik1} alt="" />
+        </div>
+        <div className="grafik-grid-element el2 shadow p-4 bg-body rounded">
+          <img className="w-100 h-100" src={grafik5} alt="" />
+        </div>
+        <div className="grafik-grid-element el3 shadow p-4 bg-body rounded">
+          <img className="w-100 h-100" src={grafik4} alt="" />
+        </div>
+        <div className="grafik-grid-element el4 shadow p-4 bg-body rounded">
+          <img className="w-100 h-100" src={grafik2} alt="" />
+        </div>
+        <div className="grafik-grid-element el5 shadow p-4 bg-body rounded">
+          <img className="w-100 h-100" src={grafik3} alt="" />
+        </div>
       </div>
     </div>
   );

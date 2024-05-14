@@ -19,7 +19,6 @@ import { FaCircleCheck } from "react-icons/fa6";
 import { IoMdCloseCircle } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
-
 function App() {
   const [imageUpload, setImageUpload] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);
@@ -106,10 +105,19 @@ function App() {
     setLoading(true)
     console.log("image url:",imageUrl)
     // const res = await axios.post("http://localhost:5000/yapayzeka",{imageUrl})
-    const res = await axios.post("http://165.22.18.182:5000/yapayzeka",{imageUrl})
+    const agent = new https.Agent({
+      rejectUnauthorized: false,
+    })
+    const res = await axios.post("http://165.22.18.182:5000/yapayzeka",{imageUrl},{
+      httpsAgent: agent
+    })
     console.log("res yapayzeka: ",res.data)
     setResYapayzeka(res.data)
     setLoading(false)
+  }
+
+  const handleNavigate=()=>{
+    navigate("/grafik")
   }
 
   return (
@@ -130,6 +138,11 @@ function App() {
           }} id="file-upload" type="file" />
           <button className="upload-btn" disabled={uploadProgress > 0 && uploadProgress < 100} onClick={uploadFile}> Upload Image</button>
           {uploadProgress > 0 && <ProgressBar percentage={uploadProgress} />}
+        </div>
+        <div className="mt-4 d-flex align-items-center justify-content-center">
+          <button onClick={handleNavigate} className="upload-btn">
+            Performans Çıktıları
+          </button>
         </div>
       </div>
 
