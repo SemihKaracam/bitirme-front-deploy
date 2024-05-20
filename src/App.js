@@ -96,7 +96,8 @@ function App() {
   const handleTestEt = async (imageUrl) => {
     setIsModalOpen(true);
     setLoading(true);
-    const res = await axios.post("http://165.22.18.182:5000/yapayzeka", { imageUrl });
+    // const res = await axios.post("http://165.22.18.182:5000/yapayzeka", { imageUrl });
+    const res = await axios.post("https://bitirme-node-api.onrender.com/", { imageUrl });
     setResYapayzeka(res.data);
     setLoading(false);
   }
