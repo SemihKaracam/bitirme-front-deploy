@@ -170,7 +170,7 @@ function App() {
         </div>
       </div>
 
-      {/* <div className="modal fade modal-lg" id="exampleModal" data-bs-backdrop="static" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade modal-lg" id="exampleModal" data-bs-backdrop="static" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
@@ -179,7 +179,7 @@ function App() {
             <div className="modal-body d-flex align-items-center justify-content-center">
               {loading ? (
                 <div className='d-flex flex-column align-items-center justify-content-center gap-4'>
-                  <p className='h2'>Hatalı ürün testi yapılıyor</p>
+                  <p className='h3'>Hatalı ürün testi yapılıyor</p>
                   <ReactLoading type='spin' color='black' width={'48px'} height={'48px'} />
                 </div>
               ) : (
@@ -203,23 +203,26 @@ function App() {
                   )}
                   <div>
 
-                  <img
+                    <img
                       style={{ width: "240px", height: "240px" }}
                       src={heatmap}
-                  />
+                    />
                   </div>
                   <p style={{ fontSize: '24px' }}>Modelin tahminleme süresi: <b style={{ color: 'red' }}>{((resYapayzeka?.predictionTime) / 1000).toFixed(2)}</b> saniye</p>
                   <p style={{ fontSize: '24px' }}>Resmin modele yüklenme süresi: <b style={{ color: 'red' }}>{((resYapayzeka?.loadTime) / 1000).toFixed(2)}</b> saniye</p>
                 </div>
               )}
+              <div className="button-close-div">
+                <button onClick={closeModal} style={{ marginBottom: '12px' }} type="button" className="close-button btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+              </div>
             </div>
-            <div className="modal-footer">
+            {/* <div className="modal-footer">
               <button onClick={closeModal} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-            </div>
+            </div> */}
           </div>
         </div>
-      </div> */}
-      <div className="modal fade modal-lg show" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      </div>
+      {/* <div className="modal fade modal-lg show" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
@@ -261,12 +264,9 @@ function App() {
                 <button onClick={closeModal} style={{ marginBottom: '12px' }} type="button" className="close-button btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
               </div>
             </div>
-            {/* <div className="modal-footer">
-              <button onClick={closeModal} style={{marginBottom:'12px'}} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
-            </div> */}
           </div>
         </div>
-      </div>
+      </div> */}
       <ToastContainer />
     </div>
   );
