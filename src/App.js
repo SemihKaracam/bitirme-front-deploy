@@ -22,6 +22,8 @@ import { FaCircleCheck } from "react-icons/fa6";
 import { IoMdCloseCircle } from "react-icons/io";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import heatmap from "./assets/heatmap.png"
+
 
 
 function App() {
@@ -168,7 +170,7 @@ function App() {
         </div>
       </div>
 
-      <div className="modal fade modal-lg" id="exampleModal" data-bs-backdrop="static" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      {/* <div className="modal fade modal-lg" id="exampleModal" data-bs-backdrop="static" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
@@ -199,6 +201,13 @@ function App() {
                       </div>
                     )
                   )}
+                  <div>
+
+                  <img
+                      style={{ width: "240px", height: "240px" }}
+                      src={heatmap}
+                  />
+                  </div>
                   <p style={{ fontSize: '24px' }}>Modelin tahminleme süresi: <b style={{ color: 'red' }}>{((resYapayzeka?.predictionTime) / 1000).toFixed(2)}</b> saniye</p>
                   <p style={{ fontSize: '24px' }}>Resmin modele yüklenme süresi: <b style={{ color: 'red' }}>{((resYapayzeka?.loadTime) / 1000).toFixed(2)}</b> saniye</p>
                 </div>
@@ -207,6 +216,54 @@ function App() {
             <div className="modal-footer">
               <button onClick={closeModal} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
             </div>
+          </div>
+        </div>
+      </div> */}
+      <div className="modal fade modal-lg show" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h4 className="modal-title" id="exampleModalLabel">Model Test Sonucu</h4>
+            </div>
+            <div className="modal-body d-flex align-items-center justify-content-center">
+              {loading ? (
+                <div className="d-flex flex-column align-items-center justify-content-center gap-4">
+                  <p className="h2">Hatalı ürün testi yapılıyor</p>
+                  <ReactLoading type="spin" color="black" width="48px" height="48px" />
+                </div>
+              ) : (
+                <div className="d-flex flex-column align-items-center justify-content-center gap-3">
+                  {resYapayzeka && (
+                    resYapayzeka?.prediction[0] < 0.5 ? (
+                      <div className="d-flex flex-column align-items-center justify-content-center gap-2">
+                        <span className="result-text" style={{ color: 'green' }}>
+                          BAŞARILI ÜRÜN
+                        </span>
+                        <FaCircleCheck size="48px" color="green" />
+                      </div>
+                    ) : (
+                      <div className="d-flex flex-column align-items-center justify-content-center gap-2">
+                        <span className="result-text" style={{ color: 'red' }}>
+                          HATALI ÜRÜN
+                        </span>
+                        <IoMdCloseCircle size="48px" color="red" />
+                      </div>
+                    )
+                  )}
+                  <div>
+                    <img style={{ width: '240px', height: '240px' }} src={heatmap} alt="Heatmap" />
+                  </div>
+                  <p className="result-text">Modelin tahminleme süresi: <b style={{ color: 'red' }}>{((resYapayzeka?.predictionTime) / 1000).toFixed(2)}</b> saniye</p>
+                  <p className="result-text">Resmin modele yüklenme süresi: <b style={{ color: 'red' }}>{((resYapayzeka?.loadTime) / 1000).toFixed(2)}</b> saniye</p>
+                </div>
+              )}
+              <div className="button-close-div">
+                <button onClick={closeModal} style={{ marginBottom: '12px' }} type="button" className="close-button btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+              </div>
+            </div>
+            {/* <div className="modal-footer">
+              <button onClick={closeModal} style={{marginBottom:'12px'}} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div> */}
           </div>
         </div>
       </div>

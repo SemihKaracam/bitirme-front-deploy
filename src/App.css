@@ -148,27 +148,28 @@ input::file-selector-button:hover{
   border-color: #59B259;  
 }
 
-
+/* 
 
 .modal{
   width: 800px;
-  height: 800px;
+  height: 600px;
   position: fixed;
-  top: 60%;  /* position the top  edge of the element at the middle of the parent */
-  left: 50%; /* position the left edge of the element at the middle of the parent */
-  transform: translate(-50%, -50%); /* This is a shorthand of
-                                       translateX(-50%) and translateY(-50%) */
+  background-color: white;
+  top: 50%;  
+  left: 50%; 
+  transform: translate(-50%, -50%); 
 }
 .modal-dialog,
 .modal-content {
-    /* 80% of window height */
-    height: 400px;
+    height: 100%;
+    width: 100%;
 }
 .modal-header{
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 
 .result-text{
   font-size: 24px;
@@ -181,11 +182,98 @@ input::file-selector-button:hover{
 .close {
   width: 16px;
   height: 16px;
+} */
+
+/* Styles for the modal */
+.modal {
+  width: 80%;
+  max-width: 800px;
+  height: auto;
+  max-height: 90%;
+  position: fixed;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+
+.modal-dialog {
+  height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.modal-content {
+  height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+}
+.modal-title{
+  text-align: center;
+  font-weight: 500;
+  font-size: 24px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+.modal-footer{
+  padding-bottom: 12px;
+}
+.close-button{
+  text-align: left;
+}
+.button-close-div{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.result-text {
+  font-size: 24px;
+  text-align: center;
+}
+
+.cikis-btn {
+  border: none;
+  font-weight: 500;
+}
+
+.close {
+  width: 16px;
+  height: 16px;
+}
+
+.img-container {
+  width: 100%;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
 }
 
 
-/*grafik sayfası*/
 
+
+
+
+
+
+
+/*grafik sayfası*/
 .grafik-page {
   padding:40px;
   width: 100%;
