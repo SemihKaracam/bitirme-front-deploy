@@ -103,11 +103,11 @@ function App() {
     setIsModalOpen(true);
     setLoading(true);
     try {
-      const res = await axios.post("https://bitirmeflask.duckdns.org:5000/yapayzeka", { imageUrl });
+      const res = await axios.post("http://bitirmeflask.duckdns.org:5000/yapayzeka", { imageUrl });
       setResYapayzeka(res.data);
       if(res.data.prediction > 0.5){
         const startTime = Date.now();  // Başlangıç zamanını al
-        const resHeatmap = await axios.post("https://bitirmeflask.duckdns.org:5000/generate-heatmap", { imageUrl }, { responseType: 'blob' })
+        const resHeatmap = await axios.post("http://bitirmeflask.duckdns.org:5000/generate-heatmap", { imageUrl }, { responseType: 'blob' })
         const url = URL.createObjectURL(resHeatmap.data)
         const endTime = Date.now();  // Bitiş zamanını al
         const durationInMillis = endTime - startTime;  // Süreyi hesapla
