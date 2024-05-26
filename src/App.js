@@ -33,6 +33,9 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false)
   const [resYapayzeka, setResYapayzeka] = useState()
+  const [heatmapUrl, setHeatmapUrl] = useState()
+  const [requestDuration, setRequestDuration] = useState(null);
+
   const navigate = useNavigate()
 
   const imagesListRef = ref(storage, "images/");
@@ -96,11 +99,26 @@ function App() {
   }
 
   const handleTestEt = async (imageUrl) => {
+    setRequestDuration(0)
     setIsModalOpen(true);
     setLoading(true);
-    // const res = await axios.post("http://165.22.18.182:5000/yapayzeka", { imageUrl });
-    const res = await axios.post("https://bitirme-node-api.onrender.com/", { imageUrl });
-    setResYapayzeka(res.data);
+    try {
+      const res = await axios.post("https://64.226.103.143:5000/yapayzeka", { imageUrl });
+      setResYapayzeka(res.data);
+      if(res.data.prediction > 0.5){
+        const startTime = Date.now();  // Başlangıç zamanını al
+        const resHeatmap = await axios.post("https://64.226.103.143:5000/generate-heatmap", { imageUrl }, { responseType: 'blob' })
+        const url = URL.createObjectURL(resHeatmap.data)
+        const endTime = Date.now();  // Bitiş zamanını al
+        const durationInMillis = endTime - startTime;  // Süreyi hesapla
+        setRequestDuration(durationInMillis / 1000);  // Milisaniyeyi saniyeye çevir ve state'e ata
+        setHeatmapUrl(url)
+        console.log(url)
+      }
+
+    } catch (err) {
+      console.log(err)
+    }
     setLoading(false);
   }
 
@@ -201,15 +219,18 @@ function App() {
                       </div>
                     )
                   )}
-                  <div>
-
-                    <img
-                      style={{ width: "240px", height: "240px" }}
-                      src={heatmap}
-                    />
-                  </div>
+                  {
+                    resYapayzeka?.prediction[0] > 0.5 &&
+                      (<div>
+                        <img
+                          style={{ width: "240px", height: "240px" }}
+                          src={heatmapUrl}
+                        />
+                      </div>)
+                  }
                   <p style={{ fontSize: '24px' }}>Modelin tahminleme süresi: <b style={{ color: 'red' }}>{((resYapayzeka?.predictionTime) / 1000).toFixed(2)}</b> saniye</p>
                   <p style={{ fontSize: '24px' }}>Resmin modele yüklenme süresi: <b style={{ color: 'red' }}>{((resYapayzeka?.loadTime) / 1000).toFixed(2)}</b> saniye</p>
+                  {requestDuration > 0 && <p style={{ fontSize: '24px' }}>Heat map oluşturma süresi: <b style={{ color: 'red' }}>{requestDuration?.toFixed(2)}</b> saniye</p>}
                 </div>
               )}
               <div className="button-close-div">

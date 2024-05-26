@@ -235,6 +235,9 @@ input::file-selector-button:hover{
   text-align: left;
 }
 .button-close-div{
+  position: absolute;
+  bottom: 15px;
+  right: 5px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
